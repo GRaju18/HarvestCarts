@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Popover showHeader="false" contentWidth="33%" contentHeight="500px" placement="Auto" ariaLabelledBy="master-title">
+		<NavContainer id="navCon">
+			<Page id="master" class="sapUiResponsivePadding--header formTitleBold" title="Cart Details">
+				<headerContent>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<SearchField id="searchFieldlines" liveChange="onSearchLines" width="20rem"/>
+						<Button icon="sap-icon://excel-attachment" tooltip="Export to Excel" type="Default" class="sapUiSmallMarginBegin"
+							press="handleExportToExcelMD"/>
+					</OverflowToolbar>
+				</headerContent>
+				<content>
+					<VBox class="sapUiTinyMargin">
+						<Table id="tableLines" width="100%" mode="None" items="{path:'jsonModel>/harvestBatchPlantsData'}">
+							<columns>
+								<Column popinDisplay="Inline">
+									<Label text="Cart Name" design="Bold"/>
+								</Column>
+								<Column popinDisplay="Inline">
+									<Label text="Cart Count" design="Bold"/>
+								</Column>
+								<Column popinDisplay="Inline">
+									<Label text="Cart Wgt(lb)" design="Bold"/>
+								</Column>
+								<Column popinDisplay="Inline">
+									<Label text="Hanger Wgt(lb)" design="Bold"/>
+								</Column>
+								<Column popinDisplay="Inline">
+									<Label text="Gross Wgt(lb)" design="Bold"/>
+								</Column>
+								<Column popinDisplay="Inline">
+									<Label text="Net Wgt(lb)" design="Bold"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem >
+									<cells>
+										<Text text="{jsonModel>U_NCTTP}"/>
+										<Text text="{jsonModel>SNO}"/>
+										<Text text="{jsonModel>U_NCTWT}"/>
+										<Text text="{jsonModel>U_NHNWT}"/>
+										<Text text="{jsonModel>U_NGRHWT}"/>
+										<Text text="{jsonModel>U_NWFWT}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</VBox>
+				</content>
+			</Page>
+		</NavContainer>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,108 @@
+<mvc:View controllerName="com.9b.harvestCarts.controller.HarvestView" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:core="sap.ui.core" xmlns:table="sap.ui.table" xmlns:tnt="sap.tnt" busy="{jsonModel>/busyView}">
+	<f:DynamicPage id="dynamicPageId" showFooter="true" class="dyPage custFDynamicPageTitle sapUiSizeCompact" busy="{jsonModel>/busyView}">
+		<f:title>
+			<f:DynamicPageTitle>
+			
+				<!--<f:actions>-->
+				<!--	<Button icon="sap-icon://refresh" press="onPlantsRefresh" type="Default"/>-->
+				<!--</f:actions>-->
+				<f:navigationActions>
+					<Button text="{jsonModel>/refreshText}" type="Transparent" enabled="false" class="lastUpdate" width="11.5rem"/>
+				</f:navigationActions>
+			</f:DynamicPageTitle>
+		</f:title>
+	
+		<f:content>
+			<VBox height="100%">
+				<VBox height="100%" class="fullHeight" width="100%">
+					<table:Table class="uiTableTable" id="HarvestLinesTable" selectionMode="MultiToggle" rowSelectionChange="handleRowSelection"
+						cellClick="cellClick" visibleRowCountMode="Auto" rows="{path:'jsonModel>/harvestLinesData'}" customFilter="onFilterTable">
+						<table:extension>
+							
+							<OverflowToolbar>
+								<Text class="tableTitle" id="tableHeader" text="{i18n>Batches}"/>
+								<ToolbarSpacer/>
+								<MultiInput width="25rem" placeholder="Search" tokenUpdate="tokenUpdateMultiInput" submit="onSubmitMultiInput" showValueHelp="false"
+									liveChange="onChangeMultiInput" id="searchFieldTable" enableMultiLineMode="true"/>
+								<Button text="{i18n>ClearAllFilters}" press="clearAllFilters"/>
+								<DatePicker id="SelectDate" width="10rem"/>
+								<Button text="Go" press="loadMasterData" type="Ghost" />
+								
+								<Button icon="sap-icon://excel-attachment" tooltip="Export to Excel" type="Default" class="sapUiSmallMarginBegin"
+									press="handleExportToExcelMD"/>
+							</OverflowToolbar>
+						
+						</table:extension>
+						<table:columns>
+
+							<table:Column sortProperty="U_NHBID" filterProperty="U_NHBID" tooltip="Batch ID">
+								<Label text="Harvest Name" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>U_NHBID}" wrapping="true"/>
+								</table:template>
+							</table:Column>
+							
+							<table:Column sortProperty="U_NITEM" filterProperty="U_NITEM" tooltip="Batch ID">
+								<Label text="Item Name" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>U_NITEM}" wrapping="true"/>
+								</table:template>
+							</table:Column>
+							
+							<table:Column sortProperty="U_NLOCD" filterProperty="U_NLOCD" tooltip="Location">
+								<Label text="Location" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>U_NLOCD}" wrapping="true"/>
+								</table:template>
+							</table:Column>
+							
+							<table:Column sortProperty="U_NCTTP" filterProperty="U_NCTTP" tooltip="Cart Name">
+								<Label text="Cart Name" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>U_NCTTP}" wrapping="true"/>
+								</table:template>
+							</table:Column>
+							<table:Column id="cartWeight" sortProperty="U_NCTWT" filterProperty="U_NCTWT" tooltip="Cart Weight">
+								<Label text="Cart Wgt(lb)" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>U_NCTWT}" wrapping="true"/>
+								</table:template>
+							</table:Column>
+							<table:Column id="hangerWgt" sortProperty="U_NHNWT" filterProperty="U_NHNWT" tooltip="Hanger Wgt">
+								<Label text="Hanger Wgt(lb)" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>U_NHNWT}" wrapping="true"/>
+								</table:template>
+							</table:Column>
+							<table:Column id="grossWgt" sortProperty="U_NGRHWT" filterProperty="U_NGRHWT" tooltip="Gross Wgt">
+								<Label text="Gross Wgt(lb)" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>U_NGRHWT}" wrapping="true"/>
+								</table:template>
+							</table:Column>
+							<table:Column id="netWgt" sortProperty="U_NWFWT" filterProperty="U_NWFWT" tooltip="Net Wgt">
+								<Label text="Net Wgt(lb)" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>U_NWFWT}" wrapping="true"/>
+								</table:template>
+							</table:Column>
+						
+						</table:columns>
+					</table:Table>
+				</VBox>
+			</VBox>
+
+		</f:content>
+		<f:footer>
+			<Bar>
+				<contentLeft>
+					<!--<Button id="resPop" icon="sap-icon://information" press="handleOpenPopOver" ariaHasPopup="Dialog"/>-->
+				</contentLeft>
+				<contentRight>
+					<Text text="{jsonModel>/versionInfo}"/>
+				</contentRight>
+			</Bar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>
