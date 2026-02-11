@@ -35,6 +35,14 @@
 						
 						</table:extension>
 						<table:columns>
+							
+							
+							<table:Column sortProperty="SNO" filterProperty="SNO" tooltip="SNO">
+								<Label text="Cart Number" design="Bold"/>
+								<table:template>
+									<Text text="{jsonModel>SNO}" wrapping="true"/>
+								</table:template>
+							</table:Column>
 
 							<table:Column sortProperty="U_NHBID" filterProperty="U_NHBID" tooltip="Batch ID">
 								<Label text="Harvest Name" design="Bold"/>
