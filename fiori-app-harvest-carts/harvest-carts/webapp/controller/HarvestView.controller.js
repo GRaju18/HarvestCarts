@@ -123,7 +123,7 @@ sap.ui.define([
 						"Net_Wgt(lb)": obj.U_NWFWT,
 						"Empty_Cart": obj.Empty_Cart,
 						"Dry_Weight": obj.dry_Weight,
-						"License": obj.U_NLFID,
+						// "License": obj.U_NLFID,
 	
 					};
 					MDexportData.push(MDexpData);
