@@ -95,80 +95,86 @@ sap.ui.define([
 			var dateStr = dateFormat.format(new Date());
 			var MDexportData = [];
 			
-			
-			var oBinding = this.byId("HarvestLinesTable")?.getBinding("rows");
-			var aContexts = oBinding?.getCurrentContexts();
-			
-			
-			var aFilteredData = aContexts.map(function(oContext) {
-			    return oContext.getObject();
-			});
-			
-			
-			if(aFilteredData.length > 0){
+				var oTable = this.byId("HarvestLinesTable");
+				var oBinding = oTable?.getBinding("rows");
 				
-					$.each(aFilteredData, function (i, obj) {
-					obj.Empty_Cart = "";
-					obj.dry_Weight = "";
-	
-					var MDexpData = {
-						"Cart_Number": obj.SNO,
-						"Harvest_Name": obj.U_NHBID,
-						"Item_Name": obj.U_NITEM,
-						"Location": obj.U_NLOCD,              
-						"Cart_Name": obj.U_NCTTP,
-						"Cart_Wgt(lb)": obj.U_NCTWT,
-						"Hanger_Wgt(lb)": obj.U_NHNWT,
-						"Gross_Wgt(lb)": obj.U_NGRHWT,
-						"Net_Wgt(lb)": obj.U_NWFWT,
-						"Empty_Cart": obj.Empty_Cart,
-						"Dry_Weight": obj.dry_Weight,
-						// "License": obj.U_NLFID,
-	
-					};
-					MDexportData.push(MDexpData);
-				});
-	
-				var MDShowLabel = "Harvest Lines Data";
-				var MDReportTitle = MDShowLabel + dateStr;
-				this.exportToExcel(MDexportData, MDReportTitle, MDShowLabel);
+				if (oBinding) {
 				
-			} else {
+				    // Get total number of filtered rows
+				    var iLength = oBinding?.getLength();
 				
-					sap.m.MessageToast.show("No batches found to export");
+				    // Get ALL filtered contexts
+				    var aContexts = oBinding?.getContexts(0, iLength);
 				
-					// if(tableData.length > 0 ){
-					// 	$.each(tableData, function (i, obj) {
-					// 		obj.Empty_Cart = "";
-					// 		obj.dry_Weight = "";
-							
-					// 		var MDexpData = {
-					// 			"Harvest_Name": obj.U_NHBID,
-					// 			"Item_Name": obj.U_NITEM,
-					// 			"Location": obj.U_NLOCD,              
-					// 			"Cart_Name": obj.U_NCTTP,
-					// 			"Cart_Wgt(lb)": obj.U_NCTWT,
-					// 			"Hanger_Wgt(lb)": obj.U_NHNWT,
-					// 			"Gross_Wgt(lb)": obj.U_NGRHWT,
-					// 			"Net_Wgt(lb)": obj.U_NWFWT,
-					// 			"Empty_Cart": obj.Empty_Cart,
-					// 			"Dry_Weight": obj.dry_Weight,
-					// 			"License": obj.U_NLFID,
-					// 		};
-					// 		MDexportData.push(MDexpData);
-					// 	});
+				    var aFilteredData = aContexts?.map(function (oContext) {
+				        return oContext.getObject();
+				    });
+				
 			
-					// 	var MDShowLabel = "Harvest Lines Data";
-					// 	var MDReportTitle = MDShowLabel + dateStr;
-					// 	this.exportToExcel(MDexportData, MDReportTitle, MDShowLabel);
-					// 	} else {
-					// 		sap.m.MessageToast.show("No batches found to export");
-					// 	}
-				
-				
-			}
+					if(aFilteredData.length > 0){
+						
+							$.each(aFilteredData, function (i, obj) {
+							obj.Empty_Cart = "";
+							obj.dry_Weight = "";
 			
-		
+							var MDexpData = {
+								"Cart_Number": obj.SNO,
+								"Harvest_Name": obj.U_NHBID,
+								"Item_Name": obj.U_NITEM,
+								"Location": obj.U_NLOCD,              
+								"Cart_Name": obj.U_NCTTP,
+								"Cart_Wgt(lb)": obj.U_NCTWT,
+								"Hanger_Wgt(lb)": obj.U_NHNWT,
+								"Gross_Wgt(lb)": obj.U_NGRHWT,
+								"Net_Wgt(lb)": obj.U_NWFWT,
+								"Empty_Cart": obj.Empty_Cart,
+								"Dry_Weight": obj.dry_Weight,
+								// "License": obj.U_NLFID,
+			
+							};
+							MDexportData.push(MDexpData);
+						});
+			
+						var MDShowLabel = "Harvest Lines Data";
+						var MDReportTitle = MDShowLabel + dateStr;
+						this.exportToExcel(MDexportData, MDReportTitle, MDShowLabel);
+						
+					} else {
+						
+							sap.m.MessageToast.show("No batches found to export");
+						
+							// if(tableData.length > 0 ){
+							// 	$.each(tableData, function (i, obj) {
+							// 		obj.Empty_Cart = "";
+							// 		obj.dry_Weight = "";
+									
+							// 		var MDexpData = {
+							// 			"Harvest_Name": obj.U_NHBID,
+							// 			"Item_Name": obj.U_NITEM,
+							// 			"Location": obj.U_NLOCD,              
+							// 			"Cart_Name": obj.U_NCTTP,
+							// 			"Cart_Wgt(lb)": obj.U_NCTWT,
+							// 			"Hanger_Wgt(lb)": obj.U_NHNWT,
+							// 			"Gross_Wgt(lb)": obj.U_NGRHWT,
+							// 			"Net_Wgt(lb)": obj.U_NWFWT,
+							// 			"Empty_Cart": obj.Empty_Cart,
+							// 			"Dry_Weight": obj.dry_Weight,
+							// 			"License": obj.U_NLFID,
+							// 		};
+							// 		MDexportData.push(MDexpData);
+							// 	});
+					
+							// 	var MDShowLabel = "Harvest Lines Data";
+							// 	var MDReportTitle = MDShowLabel + dateStr;
+							// 	this.exportToExcel(MDexportData, MDReportTitle, MDShowLabel);
+							// 	} else {
+							// 		sap.m.MessageToast.show("No batches found to export");
+							// 	}
+						
+						
+					}
+			
+				}
 
 		},
 
