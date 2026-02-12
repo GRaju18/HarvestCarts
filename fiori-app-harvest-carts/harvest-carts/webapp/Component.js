@@ -50,7 +50,7 @@ sap.ui.define([
 			this.setModel(appModel, "appModel");
 
 			var jsonModel = new JSONModel({
-				versionInfo: "v1.124.03",
+				versionInfo: "v1.124.04",
 				createMode: false,
 				serLayerbaseUrl: "https://ghdev.seedandbeyond.com:20100",
 				userAuthPayload: {

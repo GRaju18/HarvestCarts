@@ -27,10 +27,10 @@
 									liveChange="onChangeMultiInput" id="searchFieldTable" enableMultiLineMode="true"/>
 								<Button text="{i18n>ClearAllFilters}" press="clearAllFilters"/>
 								<DatePicker id="SelectDate" width="10rem"/>
-								<Button text="Go" press="loadMasterData" type="Ghost" />
+								<Button text="Go" press="loadMasterData" type="Ghost" class="sapUiTinyMarginEnd" />
 								
-								<Button icon="sap-icon://excel-attachment" tooltip="Export to Excel" type="Default" class="sapUiSmallMarginBegin"
-									press="handleExportToExcelMD"/>
+								<Button icon="sap-icon://excel-attachment" tooltip="Export to Excel" type="Ghost" class="sapUiLargeMarginEnd sapUiLargeMarginEnd"
+									press="handleExportToExcelMD" />
 							</OverflowToolbar>
 						
 						</table:extension>
